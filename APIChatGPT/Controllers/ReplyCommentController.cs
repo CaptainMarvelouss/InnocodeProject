@@ -31,10 +31,10 @@ namespace APIChatGPT
             return Ok("Reply Success");
         }
         [HttpPut("UpdateReplyComment")]
-        public async Task<IActionResult> UpdateReplyComment(UpdatePostDto dto)
+        public async Task<IActionResult> UpdateReplyComment(UpdateComment dto)
         {
-            var post = await _context.CommentsReply.FirstOrDefaultAsync(p => p.Id == dto.PostId);
-            post.Content = dto.Content;
+            var post = await _context.CommentsReply.FirstOrDefaultAsync(p => p.Id == dto.commentId);
+            post.Content = dto.content;
             post.date = DateTime.Now;
             
             _context.Update(post);
