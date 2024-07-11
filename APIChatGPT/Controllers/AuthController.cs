@@ -16,7 +16,7 @@ namespace APIChatGPT
             _context = context;
         }
 
-        [HttpPost("Sign Up")]
+        [HttpPost("SignUp")]
         public async Task<ActionResult> SignUp(SignUpDto dto)
         {
             var EmailExist = await _context.Users.Where(x=>x.Email==dto.Email).Select(x => x.Email).FirstOrDefaultAsync();
@@ -42,7 +42,7 @@ namespace APIChatGPT
             await _context.SaveChangesAsync();
             return Ok("Sign Up succcess");
         }
-        [HttpPost("Sign In")]
+        [HttpPost("SignIn")]
         public async Task<User> SignIn(SignInDto dto) {
             var user = await _context.Users.Where(p=>p.UserName == dto.UserName && p.Password ==dto.Password ).FirstOrDefaultAsync();
             if (user == null) {

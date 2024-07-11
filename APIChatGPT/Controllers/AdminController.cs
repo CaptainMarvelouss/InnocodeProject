@@ -1,5 +1,4 @@
 ﻿using FPT.BusinessLogic;
-using FPT.BusinessLogic.DTOs.Admin;
 using FPT.Domain;
 using LLMSharp.Google.Palm;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +16,6 @@ public class AdminController : ControllerBase
         var user = await _context.Users
             .Where(p => p.UserRole == UserRole.GeneralUser)
             .ToListAsync();
-        foreach (var p in user)
-        {
-            Console.WriteLine(p);
-        }
 
         return Ok(user);
     }
@@ -37,10 +32,6 @@ public class AdminController : ControllerBase
             .Where(p => p.State == State.Pending)
             .Include(p => p.User)
             .ToListAsync();
-        foreach (var p in post)
-        {
-            Console.WriteLine(p);
-        }
 
         return Ok(post);
     }
