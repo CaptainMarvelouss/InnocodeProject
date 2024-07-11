@@ -95,5 +95,35 @@ namespace FPT.API.Controllers
             }
             return Ok(list);
         }
+        [HttpPost("SearchPost")]
+        public async Task<IActionResult> SearchPost(SearchPostDto dto)
+        {
+            List<Post> list = new List<Post>();
+            if (dto.Category == Category.All)
+            {
+                list = await _context.Posts.Where(p => (p.Content.Contains(dto.searchString) || p.Title.Contains(dto.searchString)) && p.State == dto.State).ToListAsync();
+            }
+            else
+            {
+                 list = await _context.Posts.Where(p => (p.Content.Contains(dto.searchString) || p.Title.Contains(dto.searchString))&& p.Category == dto.Category && p.State == dto.State).ToListAsync();
+            }
+            if (dto.SortEnum == SortEnum.ReactAscending)
+            {
+                list =  list.OrderByDescending(x => -x.Reacts.Count).ToList();
+            }
+            if (dto.SortEnum == SortEnum.ReactDescending)
+            {
+                list =  list.OrderByDescending(x => x.Reacts.Count).ToList();
+            }
+            if (dto.SortEnum == SortEnum.TimeDescending)
+            {
+                list = list.OrderByDescending(x => x.date).ToList();
+            }
+            if (dto.SortEnum == SortEnum.TimeAscending)
+            {
+                list =  list.OrderByDescending(x => x.date).Reverse().ToList();
+            }
+            return Ok(list);
+        }
     }
 }
