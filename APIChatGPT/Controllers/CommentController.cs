@@ -37,8 +37,8 @@ public class CommentController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-    [HttpGet("GetAllPostById")]
-    public async Task<IActionResult> GetAllPostByUserId(int UserId)
+    [HttpGet("GetAllCommentByUserId")]
+    public async Task<IActionResult> GetAllCommentByUserId(int UserId)
     {
         var list = await _context.Comments.Where(p => p.UserId == UserId).ToListAsync();
         return Ok(list);

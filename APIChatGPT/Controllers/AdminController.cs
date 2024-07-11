@@ -1,12 +1,10 @@
 ﻿using FPT.BusinessLogic;
-using FPT.BusinessLogic.DTOs.Admin;
-using FPT.Domain;
-using LLMSharp.Google.Palm;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FPT.API.Controllers;
-
+[ApiController]
+[Route("[controller]")]
 public class AdminController : ControllerBase
 {
     private readonly InnocodeDbContext _context;
