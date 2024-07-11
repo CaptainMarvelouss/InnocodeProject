@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FPT.BusinessLogic
+namespace FPT.BusinessLogic.DTOs
 {
-    public enum State
+    public class CreateNewPostDto
     {
-        Drafts, Pending, Published, Decline, Hidden
+        public int UserId { get; set; }
+       // public 
     }
 }
