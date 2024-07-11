@@ -37,17 +37,17 @@ public class CommentController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-    [HttpGet("GetAllPostById")]
-    public async Task<IActionResult> GetAllPostByUserId(int UserId)
+    [HttpGet("GetAllCommentByUserId")]
+    public async Task<IActionResult> GetAllCommentByUserId(int UserId)
     {
         var list = await _context.Comments.Where(p => p.UserId == UserId).ToListAsync();
         return Ok(list);
     }
     [HttpPut("UpdateComment")]
-    public async Task<IActionResult> UpdateComment(UpdatePostDto dto)
+    public async Task<IActionResult> UpdateComment(UpdateComment dto)
     {
-        var post = await _context.Comments.FirstOrDefaultAsync(p => p.Id == dto.PostId);
-        post.Content = dto.Content;
+        var post = await _context.Comments.FirstOrDefaultAsync(p => p.Id == dto.commentId);
+        post.Content = dto.content;
         post.date = DateTime.Now;
         _context.Update(post);
         await _context.SaveChangesAsync();
