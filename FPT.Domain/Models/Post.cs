@@ -25,5 +25,6 @@ namespace FPT.BusinessLogic
 
         [DataType(DataType.DateTime)]
         public DateTime date { get; set; } = DateTime.Now;
+        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

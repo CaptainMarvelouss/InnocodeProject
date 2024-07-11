@@ -43,6 +43,12 @@ public class CommentController : ControllerBase
         var list = await _context.Comments.Where(p => p.UserId == UserId).ToListAsync();
         return Ok(list);
     }
+    [HttpGet("GetAllCommentByPostId")]
+    public async Task<IActionResult> GetAllCommentByPostId(int postId)
+    {
+        var list = await _context.Comments.Where(p => p.PostId == postId).Include(p => p.User).ToListAsync();
+        return Ok(list);
+    }
     [HttpPut("UpdateComment")]
     public async Task<IActionResult> UpdateComment(UpdateComment dto)
     {
