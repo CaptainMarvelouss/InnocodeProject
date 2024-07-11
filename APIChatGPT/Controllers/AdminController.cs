@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FPT.API.Controllers;
-
+[ApiController]
+[Route("[controller]")]
 public class AdminController : ControllerBase
 {
     private readonly InnocodeDbContext _context;
