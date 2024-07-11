@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace FPT.BusinessLogic
 {
-    public class React
+    public class ReactDto
     {
-        public int Id { get; set; }
         public Emotion Emotion { get; set; }
+
         public int UserId { get; set; }
-        public virtual User User {get; set;}
-        public int? PostId { get; set; }
-        public virtual Post? Post { get; set; }
+
+        public int? PostID { get; set; }
+
         public int? CommentId { get; set; }
-        public virtual Comment? Comment { get; set; }
 
         public int? CommentReplyId { get; set; }
-        public virtual CommentReply? CommentReply { get; set; }
     }
 }

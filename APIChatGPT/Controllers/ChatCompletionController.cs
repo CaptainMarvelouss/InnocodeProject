@@ -1,3 +1,4 @@
+using FPT.BusinessLogic;
 using FPT.Domain;
 using LLMSharp.Google.Palm;
 using Microsoft.AspNetCore.Mvc;
@@ -5,8 +6,9 @@ namespace APIChatGPT
 {
     [ApiController]
     [Route("[controller]")]
-    public class ChatCompletionController() : ControllerBase
+    public class ChatCompletionController : ControllerBase
     {
+       
 
         [HttpPost("answer")]
         public async Task<IActionResult> Get(ChatGPTDto dto)
@@ -21,5 +23,6 @@ namespace APIChatGPT
             var response = await client.ChatAsync(messages, null, null);
             return Ok(response);
         }
+
     }
 }

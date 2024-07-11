@@ -1,4 +1,4 @@
-﻿using FPT.BusinessLogic.Models;
+﻿using FPT.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +15,8 @@ namespace FPT.BusinessLogic
         public List<React> Reacts { get; set; } = new List<React> { };
         public int UserId { get; set; }
         public virtual User User { get; set; }
+        public int PostId { get; set; }
+        public virtual Post Post { get; set; } 
         public virtual List<CommentReply> CommentReply { get; set; } = new List<CommentReply> { };
         [DataType(DataType.DateTime)]
         public DateTime date { get; set; } = DateTime.Now;

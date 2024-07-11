@@ -4,6 +4,7 @@ using FPT.BusinessLogic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPT.BusinessLogic.Migrations
 {
     [DbContext(typeof(InnocodeDbContext))]
-    partial class InnocodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240711061056_AddCommentInCommentReply")]
+    partial class AddCommentInCommentReply
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace FPT.BusinessLogic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -44,8 +44,6 @@ namespace FPT.BusinessLogic.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
@@ -68,6 +66,9 @@ namespace FPT.BusinessLogic.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserRole")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date")
@@ -201,19 +202,11 @@ namespace FPT.BusinessLogic.Migrations
 
             modelBuilder.Entity("FPT.BusinessLogic.Comment", b =>
                 {
-                    b.HasOne("FPT.BusinessLogic.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FPT.BusinessLogic.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Post");
 
                     b.Navigation("User");
                 });
