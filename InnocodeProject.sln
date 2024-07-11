@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPT.API", "APIChatGPT\FPT.API.csproj", "{AA8D0535-5D5B-4469-B99B-06D0E04F114E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPT.Domain", "FPT.Domain\FPT.Domain.csproj", "{9507B0D4-DF7D-4A63-897D-1F6BBE5B6A5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA8D0535-5D5B-4469-B99B-06D0E04F114E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8D0535-5D5B-4469-B99B-06D0E04F114E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8D0535-5D5B-4469-B99B-06D0E04F114E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8D0535-5D5B-4469-B99B-06D0E04F114E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9507B0D4-DF7D-4A63-897D-1F6BBE5B6A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9507B0D4-DF7D-4A63-897D-1F6BBE5B6A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9507B0D4-DF7D-4A63-897D-1F6BBE5B6A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9507B0D4-DF7D-4A63-897D-1F6BBE5B6A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56BDD990-09D1-4B57-A34C-F970D367E171}
+	EndGlobalSection
+EndGlobal
