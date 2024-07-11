@@ -1,6 +1,7 @@
 ﻿using FPT.BusinessLogic.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace FPT.BusinessLogic
         public virtual List<React> Reacts { get; set; } = new List<React> { };
         public int UserId { get; set; }
         public virtual User User { get; set; }
-        public UserRole UserRole { get; set; }  
+        public UserRole UserRole { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime date { get; set; } = DateTime.Now;
     }
 }
