@@ -1,4 +1,7 @@
 ﻿
+using FPT.BusinessLogic;
+using Microsoft.EntityFrameworkCore;
+
 namespace APIChatGPT
 {
     public class Program
@@ -10,6 +13,11 @@ namespace APIChatGPT
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<InnocodeDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("InnocodeDB"));
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
