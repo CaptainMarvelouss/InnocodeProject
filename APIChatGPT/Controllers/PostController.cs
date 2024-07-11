@@ -64,6 +64,12 @@ namespace FPT.API.Controllers
             var list =await _context.Posts.Where(p => p.UserId == UserId).ToListAsync();
             return Ok(list);
         }
+        [HttpGet("GetSinglePostById")]
+        public async Task<IActionResult> GetSinglePostById(int postId)
+        {
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+            return Ok(post);
+        }
         [HttpDelete("DeletePost")]
         public async Task<IActionResult> DeletePost (int postId)
         {

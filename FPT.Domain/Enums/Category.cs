@@ -6,6 +6,7 @@
         Environment,
         DigitalTransformation,
         ElectricVehicle,
-        All
+        All,
+        AI
     }
 }
