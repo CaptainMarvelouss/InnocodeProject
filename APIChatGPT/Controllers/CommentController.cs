@@ -44,10 +44,10 @@ public class CommentController : ControllerBase
         return Ok(list);
     }
     [HttpPut("UpdateComment")]
-    public async Task<IActionResult> UpdateComment(UpdatePostDto dto)
+    public async Task<IActionResult> UpdateComment(UpdateComment dto)
     {
-        var post = await _context.Comments.FirstOrDefaultAsync(p => p.Id == dto.PostId);
-        post.Content = dto.Content;
+        var post = await _context.Comments.FirstOrDefaultAsync(p => p.Id == dto.commentId);
+        post.Content = dto.content;
         post.date = DateTime.Now;
         _context.Update(post);
         await _context.SaveChangesAsync();
