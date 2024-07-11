@@ -5,6 +5,7 @@
         SemiConductor,
         Environment,
         DigitalTransformation,
-        ElectricVehicle
+        ElectricVehicle,
+        All
     }
 }
