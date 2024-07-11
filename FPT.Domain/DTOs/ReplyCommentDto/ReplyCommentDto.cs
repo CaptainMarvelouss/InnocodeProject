@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FPT.BusinessLogic.DTOs
+namespace FPT.BusinessLogic
 {
-    public class CreateNewPostDto
+    public class ReplyCommentDto
     {
+        public string Content { get; set; }
+        public int CommenId { get; set; }
         public int UserId { get; set; }
-       // public 
+
     }
 }

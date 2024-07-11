@@ -4,6 +4,7 @@ using FPT.BusinessLogic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPT.BusinessLogic.Migrations
 {
     [DbContext(typeof(InnocodeDbContext))]
-    partial class InnocodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240711043106_FixUserRole")]
+    partial class FixUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace FPT.BusinessLogic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -44,8 +44,6 @@ namespace FPT.BusinessLogic.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
@@ -60,7 +58,7 @@ namespace FPT.BusinessLogic.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CommentId")
+                    b.Property<int?>("CommentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -68,6 +66,9 @@ namespace FPT.BusinessLogic.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserRole")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date")
@@ -80,6 +81,42 @@ namespace FPT.BusinessLogic.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CommentsReply");
+                });
+
+            modelBuilder.Entity("FPT.BusinessLogic.Models.React", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CommentReplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Emotion")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("CommentReplyId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reacts");
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.Post", b =>
@@ -118,42 +155,6 @@ namespace FPT.BusinessLogic.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("FPT.BusinessLogic.React", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CommentReplyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Emotion")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("CommentReplyId");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Reacts");
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.User", b =>
@@ -201,44 +202,21 @@ namespace FPT.BusinessLogic.Migrations
 
             modelBuilder.Entity("FPT.BusinessLogic.Comment", b =>
                 {
-                    b.HasOne("FPT.BusinessLogic.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FPT.BusinessLogic.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Post");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.CommentReply", b =>
                 {
-                    b.HasOne("FPT.BusinessLogic.Comment", "Comment")
+                    b.HasOne("FPT.BusinessLogic.Comment", null)
                         .WithMany("CommentReply")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CommentId");
 
-                    b.HasOne("FPT.BusinessLogic.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FPT.BusinessLogic.Post", b =>
-                {
                     b.HasOne("FPT.BusinessLogic.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -248,13 +226,13 @@ namespace FPT.BusinessLogic.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FPT.BusinessLogic.React", b =>
+            modelBuilder.Entity("FPT.BusinessLogic.Models.React", b =>
                 {
                     b.HasOne("FPT.BusinessLogic.Comment", "Comment")
                         .WithMany("Reacts")
                         .HasForeignKey("CommentId");
 
-                    b.HasOne("FPT.BusinessLogic.CommentReply", "CommentReply")
+                    b.HasOne("FPT.BusinessLogic.CommentReply", null)
                         .WithMany("Reacts")
                         .HasForeignKey("CommentReplyId");
 
@@ -270,9 +248,18 @@ namespace FPT.BusinessLogic.Migrations
 
                     b.Navigation("Comment");
 
-                    b.Navigation("CommentReply");
-
                     b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FPT.BusinessLogic.Post", b =>
+                {
+                    b.HasOne("FPT.BusinessLogic.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

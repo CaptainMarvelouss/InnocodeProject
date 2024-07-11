@@ -1,4 +1,4 @@
-﻿using FPT.BusinessLogic.Models;
+﻿using FPT.BusinessLogic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

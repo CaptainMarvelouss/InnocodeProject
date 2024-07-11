@@ -1,5 +1,5 @@
-﻿using FPT.BusinessLogic.Enums;
-using FPT.BusinessLogic.Models;
+﻿using FPT.BusinessLogic;
+using FPT.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
