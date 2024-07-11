@@ -1,5 +1,5 @@
 ﻿using FPT.BusinessLogic;
-using FPT.BusinessLogic.DTOs.Admin;
+using FPT.BusinessLogic;
 using FPT.Domain;
 using LLMSharp.Google.Palm;
 using Microsoft.AspNetCore.Mvc;
