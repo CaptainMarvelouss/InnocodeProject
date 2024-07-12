@@ -17,7 +17,7 @@ namespace APIChatGPT
         }
 
         [HttpPost("SignUp")]
-        public async Task<ActionResult> SignUp(SignUpDto dto)
+        public async Task<User> SignUp(SignUpDto dto)
         {
             var EmailExist = await _context.Users.Where(x=>x.Email==dto.Email).Select(x => x.Email).FirstOrDefaultAsync();
             if (EmailExist != null)
@@ -31,6 +31,10 @@ namespace APIChatGPT
                 throw new Exception("User Name already register!!");
 
             }
+            if (dto.ConfirmPassword != dto.Password) 
+            {
+                throw new Exception("Confirm Password must same as Password");
+                    }
             var NewUser = new User
             {
                 UserName = dto.UserName,
@@ -40,7 +44,7 @@ namespace APIChatGPT
             };
             await _context.Users.AddAsync(NewUser);
             await _context.SaveChangesAsync();
-            return Ok("Sign Up succcess");
+            return NewUser;
         }
         [HttpPost("SignIn")]
         public async Task<User> SignIn(SignInDto dto) {
