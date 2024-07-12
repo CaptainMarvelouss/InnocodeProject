@@ -49,7 +49,7 @@ namespace FPT.BusinessLogic.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.CommentReply", b =>
@@ -79,7 +79,7 @@ namespace FPT.BusinessLogic.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CommentsReply");
+                    b.ToTable("CommentsReply", (string)null);
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.Post", b =>
@@ -117,7 +117,7 @@ namespace FPT.BusinessLogic.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.React", b =>
@@ -153,7 +153,7 @@ namespace FPT.BusinessLogic.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reacts");
+                    b.ToTable("Reacts", (string)null);
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.User", b =>
@@ -196,7 +196,7 @@ namespace FPT.BusinessLogic.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("FPT.BusinessLogic.Comment", b =>

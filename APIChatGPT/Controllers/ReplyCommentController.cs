@@ -49,7 +49,14 @@ namespace APIChatGPT
             await _context.SaveChangesAsync();
             return Ok();
         }
+        [HttpGet("GetAllReplyCommentByCmtId")]
+        public async Task<IActionResult> GetAllReplyCommentByCmtId(int id)
+        {
+            var list = await _context.CommentsReply.Include(p => p.User).Where(p => p.CommentId == id).ToListAsync();
+            
 
+            return Ok(list);
+        }
 
     }
 }

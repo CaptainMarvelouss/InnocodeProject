@@ -14,6 +14,6 @@ namespace FPT.BusinessLogic
         public string? Image {  get; set; }
         public string Title { get; set; }
         public State state { get; set; }
-        // public 
+        
     }
 }
